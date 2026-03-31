@@ -1,0 +1,57 @@
+<nav class="private-navbar">
+    <div class="container">
+        <div class="navbar-content">
+            <!-- Brand -->
+            <div class="navbar-brand">
+                <div class="navbar-brand d-flex align-items-center gap-2">
+                    <a routerLink="/" class="brand-link">
+                        <img src="/assets/logo.webp" width="40" height="40" class="rounded-circle">
+
+                        <span class="brand-text">CareSync</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <div class="navbar-links desktop-nav">
+                <!-- <a routerLinkActive="active" class="nav-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="1" x2="12" y2="23"></line>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+                    CareSync
+                </a> -->
+                <a [routerLink]="['/login']" class="nav-link">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    Login
+                </a>
+                <a [routerLink]="['/register']" class="nav-link">
+                    <i class="fa-solid fa-user-plus"></i>
+                    Register
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="mobile-nav" [class.open]="mobileMenuOpen">
+            <a routerLinkActive="active" (click)="closeMobileMenu()" class="nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                Transactions
+            </a>
+
+
+        </div>
+    </div>
+</nav>
+<!-- <router-outlet></router-outlet> -->
