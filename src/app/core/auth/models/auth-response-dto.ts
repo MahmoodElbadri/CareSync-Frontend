@@ -2,7 +2,7 @@ export interface AuthResponseDto {
     email: string;
     token: string;
     fullName: string;
-    role: string;
+    role: string[];
 }
 /*
 {
