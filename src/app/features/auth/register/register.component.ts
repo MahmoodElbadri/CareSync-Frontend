@@ -41,7 +41,7 @@ export class RegisterComponent {
     this.authService.register(registerDto).subscribe({
       next: (response) => {
         this.toastr.success('Registered successfully');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/auth/login']);
       },
       error: (error) => {
         this.toastr.error(error.message);

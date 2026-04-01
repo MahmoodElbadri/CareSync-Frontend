@@ -15,11 +15,13 @@ export class UnauthorizedNavbarComponent implements OnInit {
   protected authService = inject(AuthService);
   private router = inject(Router);
   protected isLoggedIn = this.authService.isLoggedIn;
+  protected userName = this.authService.userName;
 
   constructor() {}
   
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn;
+    this.userName = this.authService.userName;
   }
 
   toggleMobileMenu() {
