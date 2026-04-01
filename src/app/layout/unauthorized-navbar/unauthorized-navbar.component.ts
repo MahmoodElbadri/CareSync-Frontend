@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from "@angular/router";
 import { AuthService } from '../../core/auth/services/auth.service';
 
@@ -14,15 +14,12 @@ export class UnauthorizedNavbarComponent implements OnInit {
   
   protected authService = inject(AuthService);
   private router = inject(Router);
-
+  protected isLoggedIn = this.authService.isLoggedIn();
 
   constructor() {}
   
   ngOnInit(): void {
-    if(this.authService.isLoggedIn()){
-      // this.router.navigate(['/']);
-      alert('You are already logged in');
-    }
+    this.isLoggedIn = this.authService.isLoggedIn();
   }
 
   toggleMobileMenu() {
@@ -39,6 +36,5 @@ export class UnauthorizedNavbarComponent implements OnInit {
     this.closeMobileMenu();
     this.authService.logout();
     this.router.navigate(['/login']);
-    alert('You are logged out');
   }
 }
