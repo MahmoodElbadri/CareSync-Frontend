@@ -42,6 +42,11 @@ export class AuthService {
       })
     )
   }
+
+  //https://localhost:7035/api/Patients/create-patient
+  register(model: any){
+    return this.http.post(`${this.baseUrl}Patients/create-patient`, model);
+  }
   
   //i didn't use it
   jwtDecode(token: string){

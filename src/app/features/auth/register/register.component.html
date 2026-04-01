@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 p-5">
+            <h1 class="fw-bold">Welcome Back</h1>
+            <p class="text-muted">Please enter your details to register</p>
+        </div>
+        <div class="form-container col-md-6 p-5">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="formGroup">
+                    <label class="form-label" for="fullName">Full Name</label>
+                    <input type="text" class="form-control" id="fullName" formControlName="fullName">
+                    @if(registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched){
+                        <div class="alert alert-danger">
+                            @if(registerForm.get('fullName')?.hasError('required')){
+                                <span>Full Name is required</span>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="formGroup mt-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                    @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+                        <div class="alert alert-danger">
+                            @if(registerForm.get('email')?.hasError('required')){
+                                <span>Email is required</span>
+                            }
+                            @if(registerForm.get('email')?.hasError('email')){
+                                <span>Email is invalid</span>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="formGroup mt-3">
+                    <label class="form-label" for="password">Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                    @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+                        <div class="alert alert-danger">
+                            @if(registerForm.get('password')?.hasError('required')){
+                                <span>Password is required</span>
+                            }
+                            @if(registerForm.get('password')?.hasError('minlength')){
+                                <span>Password must be at least 6 characters</span>
+                            }
+                        </div>
+                    }
+                </div>
+                <div class="formGroup mt-3">
+                    <label class="form-label" for="dateOfBirth">Date of Birth</label>
+                    <input type="date" class="form-control" id="dateOfBirth" formControlName="dateOfBirth">
+                    @if(registerForm.get('dateOfBirth')?.invalid && registerForm.get('dateOfBirth')?.touched){
+                        <div class="alert alert-danger">
+                            <span>Date of Birth is required</span>
+                        </div>
+                    }
+                </div>
+                <div class="formGroup mt-3">
+                    <label class="form-label" for="bloodGroup">Blood Group</label>
+                    <input type="text" class="form-control" id="bloodGroup" formControlName="bloodGroup">
+                    @if(registerForm.get('bloodGroup')?.invalid && registerForm.get('bloodGroup')?.touched){
+                        <div class="alert alert-danger">
+                            <span>Blood Group is required</span>
+                        </div>
+                    }
+                </div>
+                <div class="col-12 mt-3">
+                    <button type="submit" [disabled]="registerForm.invalid" class="btn btn-primary col-6">Register</button>
+                    <button type="button" [routerLink]="['/auth/login']" class="btn btn-secondary col-6">Already have an account?</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
