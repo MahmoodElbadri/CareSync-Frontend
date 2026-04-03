@@ -1,1 +1,53 @@
-{{doctorService.doctorAppointments() | json}}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Doctor Dashboard</h1>
+        </div>
+    </div>
+    <div class="row">
+        @if(doctorAppointments().length > 0){
+            <div class="col-12">
+                <table class="table table-striped table-bordered text-center text-black">
+                    <thead style="background: var(--gray-900); color: white; border-bottom: 2px solid black;">
+                        <tr>
+                            <th>Appointment ID</th>
+                            <th>Patient Name</th>
+                            <th>Appointment Date</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(app of doctorAppointments(); track app.appointmentId){
+                            <tr>
+                                <td>{{app.appointmentId}}</td>
+                                <td>{{app.patientName | titlecase}}</td>
+                                <td>{{app.appointmentDate | date: 'dd/MM/yyyy'}}</td>
+                                <td>{{app.notes}}</td>
+                                <td>
+                                    <span class="badge bg-primary">{{app.status | titlecase}}</span>
+                                </td>
+                                <td>
+                                    <select class="form-select">
+                                        <option value="" selected disabled>Select Status</option>
+                                        <option value="confirmed">Confirmed</option>
+                                        <option value="completed">Completed</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+        @else{
+            <div class="col-12">
+                <div class="alert alert-info text-center">
+                    No appointments found
+                </div>
+            </div>
+        }
+    </div>
+</div>
