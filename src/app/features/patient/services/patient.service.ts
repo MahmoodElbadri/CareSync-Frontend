@@ -34,6 +34,7 @@ export class PatientService {
     return this.http.post(
       `${this.apiUrl}Appointments/create-appointment`,
       model,
+      // {responseType: 'text'}
     );
   }
 

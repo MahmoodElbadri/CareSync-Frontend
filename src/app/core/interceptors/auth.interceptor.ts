@@ -20,12 +20,13 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   //in case of token expired    
   return next(clonedReq).pipe(
-    catchError((err)=>{
-      if(err.status === 401){
+    catchError((err) => {
+      if (err.status === 401) {
         authService.logout();
         router.navigate(['/login']);
       }
-      return throwError(()=> new Error(err.error.message));
+
+      return throwError(() => err.error?.message || err.message || 'Something went wrong');
     })
-  )
+  );
 };
