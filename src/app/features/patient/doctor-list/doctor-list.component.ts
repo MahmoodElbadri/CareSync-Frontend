@@ -26,23 +26,13 @@ export class DoctorListComponent implements OnInit {
   protected selectedItem: DoctorReadDto | null = null;
   protected reservationForm!: FormGroup;
   protected searchForm!: FormGroup;
-  /*
-   new Speciality { Id = 1, Name = "Cardiology" },      // أمراض القلب
- new Speciality { Id = 2, Name = "Dermatology" },     // الجلدية
- new Speciality { Id = 3, Name = "Pediatrics" },      // طب الأطفال
- new Speciality { Id = 4, Name = "Orthopedics" },     // جراحة العظام
- new Speciality { Id = 5, Name = "Neurology" },       // المخ والأعصاب
- new Speciality { Id = 6, Name = "Ophthalmology" },   // طب العيون
- new Speciality { Id = 7, Name = "Dentistry" },       // طب الأسنان
- new Speciality { Id = 8, Name = "Psychiatry" },      // الطب النفسي
- new Speciality { Id = 9, Name = "Internal Medicine"} // الباطنة*/
   protected specialities: string[] =
    ['Cardiology', 'Dermatology', 'Pediatrics', 'Orthopedics', 'Neurology', 'Ophthalmology', 'Dentistry', 'Psychiatry', 'Internal Medicine'];
 
   //methods
   ngOnInit(): void {
     this.patientService.getAllDoctors();
-    // this.initializeSearchForm();
+    this.initializeSearchForm();
   }
 
   initializeSearchForm(){
@@ -106,6 +96,9 @@ export class DoctorListComponent implements OnInit {
 
   resetSearch(){
     this.searchForm.reset();
+    this.searchForm.patchValue({
+      specialityName: ''
+    })
     this.patientService.getAllDoctors();
   }
 }

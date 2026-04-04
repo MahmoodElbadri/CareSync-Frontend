@@ -5,74 +5,65 @@
     </div>
   </div>
   <div class="row mb-4">
-  <div class="col-md-12">
-    <form class="row g-3 align-items-center" (ngSubmit)="searchDoctors()">
+    <div class="col-md-12">
+      <form class="row g-3 align-items-center" [formGroup]="searchForm" (ngSubmit)="searchDoctors()">
+        <!-- Search by name -->
+        <div class="col-md-4 col-12">
+          <input type="text" class="form-control form-control-lg" formControlName="search"
+            placeholder="Search by doctor name">
+        </div>
 
-      <!-- Search by name -->
-      <div class="col-3">
-        <input 
-          type="text" 
-          class="form-control" 
-          formControlName="search"
-          placeholder="Search by doctor name">
-      </div>
-
-      <!-- Filter by Speciality -->
-      <div class="col-3">
-        <select 
-          class="form-select"
-          formControlName="specialityName">
-          <option value="" disabled selected>Filter by Speciality</option>
-          @for (speciality of specialities; track speciality) {
+        <!-- Filter by Speciality -->
+        <div class="col-md-4 col-12">
+          <select class="form-select form-select-lg" formControlName="specialityName">
+            <option value="" hidden>-- Filter by Speciality --</option>
+            @for (speciality of specialities; track speciality) {
             <option [value]="speciality">{{ speciality }}</option>
-          }
-        </select>
-      </div>
+            }
+          </select>
+        </div>
 
-      <!-- Search Button -->
-      <div class="col-3">
-        <button type="submit" class="btn btn-primary w-100">Search</button>
-      </div>
-
-      <!-- Reset Button -->
-      <div class="col-3">
-        <button type="reset" (click)="resetSearch()" class="btn btn-primary w-100">Reset</button>
-      </div>
-
-    </form>
-  </div>
-</div>
-<div class="row g-4">
-  @for (doctor of doctors(); track doctor.id) {
-  <div class="col-md-4 col-sm-6">
-    <div class="card h-100 shadow-sm border-0">
-      <img src="assets/logo.webp" class="card-img-top p-3 rounded-circle" alt="Doctor"
-        style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto;">
-
-      <div class="card-body text-center">
-        <h5 class="card-title fw-bold">Dr. {{ doctor.fullName }}</h5>
-        <span class="badge bg-primary mb-2">{{ doctor.specialityName }}</span>
-
-        <p class="card-text text-muted small mt-2">
-          {{ doctor.bio || 'No biography available at the moment.' }}
-        </p>
-
-        <h6 class="fw-bold text-success mb-3">
-          Consultation Fee: ${{ doctor.consultationFee | currency: 'EGP'}}
-        </h6>
-
-        <button class="btn btn-outline-primary w-100 fw-bold" (click)="openModal(doctor)">
-          <i class="bi bi-calendar-check me-2"></i> Book Appointment
-        </button>
-      </div>
+        <!-- Buttons -->
+        <div class="col-md-4 col-12">
+          <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary btn-lg flex-fill">SEARCH</button>
+            <button type="button" (click)="resetSearch()" class="btn btn-primary btn-lg flex-fill">RESET</button>
+          </div>
+        </div>
+      </form>
     </div>
   </div>
-  } @empty {
-  <div class="col-12 text-center py-5">
-    <h4 class="text-muted">No doctors available at the moment.</h4>
+  <div class="row g-4">
+    @for (doctor of doctors(); track doctor.id) {
+    <div class="col-md-4 col-sm-6">
+      <div class="card h-100 shadow-sm border-0">
+        <img src="assets/logo.webp" class="card-img-top p-3 rounded-circle" alt="Doctor"
+          style="width: 150px; height: 150px; object-fit: cover; margin: 0 auto;">
+
+        <div class="card-body text-center">
+          <h5 class="card-title fw-bold">Dr. {{ doctor.fullName }}</h5>
+          <span class="badge bg-primary mb-2">{{ doctor.specialityName }}</span>
+
+          <p class="card-text text-muted small mt-2">
+            {{ doctor.bio || 'No biography available at the moment.' }}
+          </p>
+
+          <h6 class="fw-bold text-success mb-3">
+            Consultation Fee: ${{ doctor.consultationFee | currency: 'EGP'}}
+          </h6>
+
+          <button class="btn btn-outline-primary w-100 fw-bold" (click)="openModal(doctor)">
+            <i class="bi bi-calendar-check me-2"></i> Book Appointment
+          </button>
+        </div>
+      </div>
+    </div>
+    } @empty {
+    <div class="col-12 text-center py-5">
+      <h4 class="text-muted">No doctors available at the moment.</h4>
+    </div>
+    }
   </div>
-  }
-</div>
 </div>
 
 @if (isModalOpen) {

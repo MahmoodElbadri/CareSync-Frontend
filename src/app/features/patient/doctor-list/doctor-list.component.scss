@@ -91,3 +91,26 @@
 .btn-primary:hover {
   background: #0056b3;
 }
+
+/* Add this to your component CSS */
+.form-control-lg,
+.form-select-lg {
+  height: 48px;
+  font-size: 16px;
+  padding: 12px 16px;
+}
+
+.btn-lg {
+  height: 48px;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 24px;
+}
+
+.form-select-lg {
+  background-position: right 12px center;
+}
+
+.form-select option[value=""] {
+  color: #6c757d; /* Gray color like placeholder */
+}
