@@ -1,0 +1,21 @@
+{
+    "NAVBAR":{
+        "LOGIN":"Login",
+        "REGISTER":"Register",
+        "LOGOUT":"Logout"
+    },
+    "PATIENT":{
+    "TITLE":    "Our TOP Rated Doctors",
+    "SEARCH_PLACEHOLDER": "Seaarch By Dr. Name"
+    },
+    "LOGINPAGE":{
+        "TITLE":"Welcome To Our Clinic",
+        "SUBTITLE":"Book an appointment with the best doctors",
+        "EMAIL":"Email",
+        "PASSWORD":"Password",
+        "LOGIN":"Login",
+        "REGISTER":"Don't have an account? Register Now"
+        
+    }
+
+}

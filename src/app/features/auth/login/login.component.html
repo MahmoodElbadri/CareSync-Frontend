@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 p-5">
-            <h1 class="fw-bold">Welcome Back</h1>
-            <p class="text-muted">Please enter your details to login</p>
+            <h1 class="fw-bold">{{'LOGINPAGE.TITLE' | translate}}</h1>
+            <p class="text-muted">{{'LOGINPAGE.SUBTITLE' | translate}}</p>
         </div>
         <div class="form-container col-md-6 p-5">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="formGroup">
-                    <label class="form-label" for="email">Email</label>
+                    <label class="form-label" for="email">{{'LOGINPAGE.EMAIL' | translate}}</label>
                     <input type="email" class="form-control" id="email" formControlName="email">
                     @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched){
                         <div class="alert alert-danger">
@@ -21,7 +21,7 @@
                     }
                 </div>
                 <div class="formGroup mt-3">
-                    <label class="form-label" for="password">Password</label>
+                    <label class="form-label" for="password">{{'LOGINPAGE.PASSWORD' | translate}}</label>
                     <input type="password" class="form-control" id="password" formControlName="password">
                     @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
                         <div class="alert alert-danger">
@@ -35,8 +35,8 @@
                     }
                 </div>
                 <div class="col-12 mt-3">
-                    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary col-6">Login</button>
-                    <button type="button" [routerLink]="['/auth/register']" class="btn btn-secondary col-6">Doesn't have an account?</button>
+                    <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary col-6">{{'LOGINPAGE.LOGIN' | translate}}</button>
+                    <button type="button" [routerLink]="['/auth/register']" class="btn btn-secondary col-6">{{'LOGINPAGE.REGISTER' | translate}}</button>
                 </div>
             </form>
         </div>
