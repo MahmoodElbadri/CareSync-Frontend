@@ -1,27 +1,114 @@
-# ClinicFront
+# 🩺 Doctor Booking System - Frontend Dashboard
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+A modern, responsive Single Page Application (SPA) built with Angular.  
+This application serves as the interactive user interface for doctors to manage their schedules and receive real-time updates.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## 🚀 Tech Stack
 
-## Code scaffolding
+- **Framework:** Angular
+- **Language:** TypeScript
+- **Styling:** SCSS / Bootstrap (or TailwindCSS)
+- **Real-time Communication:** @microsoft/signalr
+- **Notifications:** ngx-toastr
+- **HTTP Handling:** Angular HttpClient & RxJS
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## ✨ Key Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- 📊 Interactive Doctor Dashboard
+- 🔔 Real-time Notifications using SignalR (WebSockets)
+- 🔐 Secure Authentication with JWT Interceptors
+- 📱 Fully Responsive (Desktop & Mobile)
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## ⚙️ Getting Started
 
-## Running end-to-end tests
+### 📌 Prerequisites
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Make sure you have installed:
 
-## Further help
+- Node.js (LTS recommended)
+- Angular CLI  
+  ```bash
+  npm install -g @angular/cli
+  ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+### 📥 Installation
+
+```bash
+git clone https://github.com/yourusername/doctor-booking-frontend.git
+cd doctor-booking-frontend
+npm install
+```
+
+---
+
+### ⚙️ Environment Setup
+
+Edit the file:
+
+```
+src/environments/environment.ts
+```
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: 'https://localhost:5001/api',
+  hubUrl: 'https://localhost:5001/notificationHub'
+};
+```
+
+---
+
+### ▶️ Run Development Server
+
+```bash
+ng serve
+```
+
+Then open your browser at:
+
+```
+http://localhost:4200/
+```
+
+---
+
+### 🏗️ Build for Production
+
+```bash
+ng build --configuration production
+```
+
+---
+
+## 📡 Real-time Notifications (SignalR)
+
+This app uses SignalR to receive live updates such as:
+
+- New appointments
+- Status changes
+- Alerts for doctors
+
+Make sure the backend SignalR Hub is running at:
+
+```
+https://localhost:5001/notificationHub
+```
+
+---
+
+## 🔐 Authentication
+
+- JWT-based authentication
+- Token automatically attached via HTTP Interceptor
+- Protected routes using Angular Guards
+
+---
