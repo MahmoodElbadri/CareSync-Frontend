@@ -14,9 +14,12 @@ export class NotificationService {
 
   public startConnection(){
     //app.MapHub<NotificationHub>("/NotificationHub");
-    const hubUrl = environment.baseUrl + 'notificationHub';
+    const hubUrl = environment.baseUrl.replace('/api','') +  'notificationHub';
+    console.log('Hub Url is : ', hubUrl);
     this.hubConnection = new signalR.HubConnectionBuilder()
-    .withUrl(hubUrl)
+    .withUrl(hubUrl, {
+      accessTokenFactory: () => localStorage.getItem('token') || '' 
+    })
     .withAutomaticReconnect()
     .build();
 
@@ -31,10 +34,10 @@ export class NotificationService {
       this.incomingNotification.set(message);
     })
 
-    this.hubConnection.stop().then(()=>{
-      console.log('Notification hub disconnected');
-    }).catch((err)=>{
-      console.error('Error disconnecting from notification hub:', err);
-    })
+    // this.hubConnection.stop().then(()=>{
+    //   console.log('Notification hub disconnected');
+    // }).catch((err)=>{
+    //   console.error('Error disconnecting from notification hub:', err);
+    // })
   }
 }
