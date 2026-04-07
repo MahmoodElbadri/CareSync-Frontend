@@ -1,8 +1,9 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { DoctorService } from '../services/doctor.service';
 import { DoctorAppointmentDto } from '../models/doctor-appointment-dto';
 import { JsonPipe, TitleCasePipe, DatePipe } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-doctor-dashboard',
@@ -18,11 +19,27 @@ export class DoctorDashboardComponent implements OnInit{
   //injections
   protected doctorService = inject(DoctorService);
   private toastr = inject(ToastrService);
+  private notificationService = inject(NotificationService);
 
   //methods
   ngOnInit(): void {
     console.log('Doctor Dashboard is called');
+    this.notificationService.startConnection();
     this.getDoctorAppointments();
+  }
+
+  /**
+   *
+   */
+  constructor() {
+    effect(()=>{
+      const notification = this.notificationService.incomingNotification();
+      if(notification){
+        this.toastr.success(notification);
+        this.getDoctorAppointments();
+      }
+    });
+    
   }
 
   getDoctorAppointments(){
